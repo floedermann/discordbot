@@ -1,10 +1,11 @@
 import discord
 from discord import Server, Client, ChannelType, Embed
 
-def ex(ctx, args, message, client, invoke):
+def ex(args, message, client, invoke):
     args_out = ""
+    author = message.author.name
     if len(args) > 0:
-        args_out = "\n\n__**Coalition-Ping** from__"+ message.author +"\n\n%s" % args.__str__()[1:-1].replace("'", "").replace(",", "")
+        args_out = "\n\n__**Coalition-Ping** ("+ author +")__\n\n%s" % args.__str__()[1:-1].replace("'", "").replace(",", "")
     for s in client.servers:
         channel = discord.utils.get(s.channels, name='general', type=ChannelType.text)
         if channel is not None:
