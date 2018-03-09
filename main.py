@@ -1,17 +1,14 @@
 import asyncio as asyncio
 import discord
-from discord import Game, Server, Member, Embed
-
 import config
-from commands import cmd_ping
+from discord import Game, Server, Member, Embed
+from commands import cmd_ping, cmd_status
 
 client = discord.Client()
 
 commands = {
-
     "ping": cmd_ping,
     "status": cmd_status,
-
 }
 
 
@@ -26,12 +23,12 @@ def on_ready():
 @client.event
 @asyncio.coroutine
 def on_message(message):
-    if message.content.startswith(STATICS.PREFIX):
-        invoke = message.content[len(STATICS.PREFIX):].split(" ")[0]
+    if message.content.startswith(config.PREFIX):
+        invoke = message.content[len(config.PREFIX):].split(" ")[0]
         args = message.content.split(" ")[1:]
         if commands.__contains__(invoke):
             yield from commands.get(invoke).ex(args, message, client, invoke)
         else:
             yield from client.send_message(message.channel, embed=Embed(color=discord.Color.red(), description=("The command `%s` is not valid!" % invoke)))
 
-client.run(SECRETS.TOKEN)
+client.run(config.TOKEN)
