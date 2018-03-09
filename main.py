@@ -23,8 +23,7 @@ def on_ready():
 
 @client.event
 @asyncio.coroutine
-@client.command(pass_context = True)
-def on_message(ctx, message):
+def on_message(message, ctx):
     if message.content.startswith(config.PREFIX):
         invoke = message.content[len(config.PREFIX):].split(" ")[0]
         args = message.content.split(" ")[1:]
