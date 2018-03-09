@@ -1,7 +1,7 @@
 import discord
 from discord import Server, Client, ChannelType, Embed
 
-def ex(args, message, client, invoke):
+def ex(args, message, client, invoke, config):
     args_out = ""
     args = ""
     for s in client.servers:

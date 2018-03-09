@@ -28,7 +28,7 @@ def on_message(message):
         invoke = message.content[len(config.PREFIX):].split(" ")[0]
         args = message.content.split(" ")[1:]
         if commands.__contains__(invoke):
-            yield from commands.get(invoke).ex(args, message, client, invoke)
+            yield from commands.get(invoke).ex(args, message, client, invoke, config)
         else:
             yield from client.send_message(message.channel, embed=Embed(color=discord.Color.red(), description=("The command `%s` is not valid!" % invoke)))
 
